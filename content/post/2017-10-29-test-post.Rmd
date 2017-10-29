@@ -1,0 +1,14 @@
+---
+title: Test Post
+author: Sean Warlick
+date: '2017-10-29'
+slug: test-post
+categories: []
+tags: []
+---
+  
+```{r blog_test}
+library(dplyr)
+dim(cars)
+head(cars)
+```
