@@ -1,4 +1,4 @@
-baseURL = "https://gunner-education-68543"
+baseURL = "https://gunner-education-68543.netlify.com"
 languageCode = "en"
 title = "Hugo Blog"
 theme = "hugo-nuo"
