@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://gunner-education-68543.netlify.com"
 languageCode = "en-us"
 title = "Let's Ask the Data"
 theme = "hugo-future-imperfect"
