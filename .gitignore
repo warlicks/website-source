@@ -2,3 +2,4 @@
 site.Rproj
 .DS_Store
 public/
+.Rproj.user
