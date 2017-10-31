@@ -183,4 +183,4 @@ addition, you can find the example code from this article in a
 standalone R script at [Github](https://github.com/warlicks/RSelenium-Data-Collection). The
 repository also has the R markdown document used to create this post.
 
-[![Video](/video_thumbnail.jpg)](/screen_cap.mov)
+![](/video_thumbnail.jpg)

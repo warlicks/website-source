@@ -8,6 +8,7 @@ paginate = 3
 disqusShortname = ""
 googleAnalytics = ""
 pluralizeListTitles = false
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [params]
   # Sets the meta tag description
