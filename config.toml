@@ -12,7 +12,7 @@ pluralizeListTitles = false
   # Sets the meta tag description
   description          = "HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo"
   # Sets the navbarTitle that appears in the top left of the navigation bar
-  navbarTitle          = "Future Imperfect"
+  navbarTitle          = "Let's Ask The Data"
   # Sets where "View More Posts" links
   viewMorePostLink     = "/blog/"
 
@@ -36,7 +36,7 @@ pluralizeListTitles = false
   loadFavicon          = false
   faviconVersion       = ""
   # Sets Social Share links to appear on posts
-  socialShare          = true
+  socialShare          = false
   # Load custom CSS or JavaScript files. The variable is an array so that you
   # can load multiple files if necessary. You can also load the standard theme
   # files by adding the value, "default".
@@ -96,12 +96,12 @@ pluralizeListTitles = false
 
 [[menu.main]]
   name = "Blog"
-  url = "/blog/"
+  url = "/post/"
   identifier = "fa fa-newspaper-o"
   weight = 3
 
 [[menu.main]]
-  name = "Itemized"
+  name = "Projects"
   url = "/itemized/"
   identifier = "fa fa-list"
   weight = 4
@@ -151,8 +151,8 @@ pluralizeListTitles = false
   vimeo           = ""
   whatsapp        = "" # WhatsApp Number
     # WeChat and QQ need testing.
-    wechat          = ""
-    qq              = "" # User ID Number
+  wechat          = ""
+  qq              = "" # User ID Number
   instagram       = "example"
   tumblr          = ""
   twitter         = "example"
