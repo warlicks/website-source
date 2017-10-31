@@ -1,9 +1,7 @@
 ---
-layout: post
 title: "RSelenium"
 date: 2016-11-19
 author: "Sean Warlick"
-header-img: "img/post-bg-05.jpg"
 --- 
 
 Introduction {#introduction}
@@ -185,4 +183,4 @@ addition, you can find the example code from this article in a
 standalone R script at [Github](https://github.com/warlicks/RSelenium-Data-Collection). The
 repository also has the R markdown document used to create this post.
 
-[![Video](../../static/video_thumbnail.jpg)](../../static/screen_cap.mov)
+[![Video](/video_thumbnail.jpg)](/screen_cap.mov)
