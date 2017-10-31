@@ -17,7 +17,7 @@ the ideas of pure, predictable and pipeable functions to data anlaysis
 programming can help achive the goals of reproducibility and easy
 collaboration.
 
-![](../../static/Hadley_SPDC.jpeg)  
+![](/Hadley_SPDC.jpeg)  
 *Hadley Presenting to SPDC*
 
 ### Pure Functions

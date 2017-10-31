@@ -1,12 +1,14 @@
-baseurl = "/"
+baseurl = "https://gunner-education-68543.netlify.com/"
 languageCode = "en-us"
 title = "Let's Ask the Data"
 theme = "hugo-future-imperfect"
+canonifyurls = true
 preserveTaxonomyNames = true
 paginate = 3
 disqusShortname = ""
 googleAnalytics = ""
 pluralizeListTitles = false
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [params]
   # Sets the meta tag description

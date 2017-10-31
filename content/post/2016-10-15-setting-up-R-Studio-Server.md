@@ -15,7 +15,7 @@ hard drive. It's basically an over-sized [Raspbery
 Pi](https://www.raspberrypi.org/). Despite the relatively low power the
 machine is perfect for learning how to set up an R Studio Server.
 
-![](../../static/IMG_0369.jpg)
+![](/IMG_0369.jpg)
 
 #### Getting the Machine Ready
 
@@ -91,7 +91,7 @@ Here we'll enter the username and password for the Linux machine. You
 can manage users with the typical Linux commands `useradd` and
 `userdel`.
 
-![](../../static/r_studio_signin.png)
+![](/r_studio_signin.png)
 
 Now we are using R on our remote machine. It is just like working with R
 on a local machine. The layout can be customized, packages can be
@@ -99,7 +99,7 @@ installed and most importantly, analysis can be developed. The one thing
 to remember is that all the data and files you will be working with need
 to be on the server.
 
-![](../../static/running_r_studio.png)
+![](/running_r_studio.png)
 
 #### Configuring and Managing the Server
 
