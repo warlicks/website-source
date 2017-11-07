@@ -4,7 +4,7 @@ title = "Let's Ask the Data"
 theme = "hugo-future-imperfect"
 canonifyurls = true
 preserveTaxonomyNames = true
-paginate = 3
+paginate = 5
 disqusShortname = ""
 googleAnalytics = ""
 pluralizeListTitles = false
@@ -12,9 +12,9 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [params]
   # Sets the meta tag description
-  description          = "HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo"
+  description          = "Sean Warlick is a Data Scientist working in the airline and aerospace industry.  He currently works in for Boeing in their globla services division.  Thanks for reading his personal ramblings about R and Python"
   # Sets the navbarTitle that appears in the top left of the navigation bar
-  navbarTitle          = "Let's Ask The Data"
+  navbarTitle          = "Sean Warlick"
   # Sets where "View More Posts" links
   viewMorePostLink     = "/blog/"
 
@@ -25,7 +25,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   rssAppearAtTop       = true
   rssAppearAtBottom    = true
   # Sets Social Media icons to appear on the sidebar
-  socialAppearAtTop    = false
+  socialAppearAtTop    = true
   socialAppearAtBottom = true
   # Sets Categories to sort by number of posts instead of alphabetical
   categoriesByCount    = true
@@ -38,7 +38,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   loadFavicon          = false
   faviconVersion       = ""
   # Sets Social Share links to appear on posts
-  socialShare          = false
+  socialShare          = true
   # Load custom CSS or JavaScript files. The variable is an array so that you
   # can load multiple files if necessary. You can also load the standard theme
   # files by adding the value, "default".
@@ -46,6 +46,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   # customJS             = ["default", "/path/to/file"]
   customCSS            = ["default"]
   customJS             = ["default"]
+  pygmentsCodefences   = true
+  pygmentsStyle        = "monokai"
+  pygmentsUseClassic   = false
+  pygmentsUseClasses   = false
 
 # Disqus will take priority over Staticman (github.com/eduardoboucas/staticman)
 # due to its ease of use. Feel free to check out both and decide what you would
@@ -61,21 +65,21 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   # These are optional params related to the sidebar. They are recommended, but not
   # required for proper functionality. HTML is supported within the params.
 [params.intro]
-  header    = "Sean Warlick"
+  header    = "Let's Ask The Data"
 
-  paragraph = "Another fine responsive site template by <a href=\"http://html5up.net\">HTML5 UP</a>. Ported by Julio Pescador with some extra goodies <i class='fa fa-hand-peace-o'></i>"
+  paragraph = "My personal ramblings about data and data analysis in R and Python"
 
-  about     = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tellus lacus, auctor vehicula molestie quis, tempor quis velit. Quisque in quam ac leo efficitur vulputate. Phasellus ullamcorper aliquam sodales. Maecenas sit amet condimentum ipsum. Proin sit amet ligula elit. Mauris."
+  about     = "Sean Warlick is a Data Scientist working in the airline and aerospace industry.  He currently works in for Boeing in their globla services division.  Thanks for reading his personal ramblings about R and Python"
 
   # This appears at the top of the sidebar above params.intro.header.
   # A width of less than 100px is recommended from a design perspective.
   [params.intro.pic]
-    src       = "/img/main/logo.jpg"
+    src       = "/main/logo.jpg"
     # Sets Image to be a cirlce
-    circle    = false
+    circle    = true
     # Sets Image to be Future Imperfect's hexagon
-    imperfect = true
-    width     = ""
+    imperfect = false
+    width     = "200"
     alt       = "Hugo Future Imperfect"
 
 [params.postAmount]
@@ -102,11 +106,11 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   identifier = "fa fa-newspaper-o"
   weight = 3
 
-[[menu.main]]
-  name = "Projects"
-  url = "/itemized/"
-  identifier = "fa fa-list"
-  weight = 4
+#[[menu.main]]
+  #name = "Projects"
+  #url = "/itemized/"
+  #identifier = "fa fa-list"
+  #weight = 4
 
 [[menu.main]]
   name = "Categories"
@@ -133,21 +137,21 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   codepen         = ""
   # Visual Art Communities
   deviantart      = ""
-  flickr          = "example"
+  flickr          = ""
   behance         = ""
   dribbble        = ""
   # Publishing Communities
   wordpress       = ""
   medium          = ""
   # Professional/Business Oriented Communities
-  linkedin        = "example"
+  linkedin        = "seanwarlick"
   foursquare      = ""
   xing            = ""
   slideshare      = ""
   # Social Networks
-  facebook        = "example"
+  facebook        = ""
   googleplus      = ""
-  reddit          = "example"
+  reddit          = ""
   quora           = ""
   youtube         = ""
   vimeo           = ""
@@ -155,13 +159,13 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     # WeChat and QQ need testing.
   wechat          = ""
   qq              = "" # User ID Number
-  instagram       = "example"
+  instagram       = ""
   tumblr          = ""
-  twitter         = "example"
+  twitter         = ""
   skype           = ""
   snapchat        = ""
-  pinterest       = "example"
-  telegram        = "example"
+  pinterest       = ""
+  telegram        = ""
   vine            = ""
   # Email
   email           = "warlick.sean@gmail.com"
