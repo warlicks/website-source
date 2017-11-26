@@ -2,13 +2,22 @@
 title: Test Post
 author: Sean Warlick
 date: '2017-10-29'
+categories:
+  - R
 slug: test-post
-categories: []
-tags: []
+output: 
+  blogdown::html_page: 
+    highlight: pygments
 ---
   
 ```{r blog_test}
 library(dplyr)
 dim(cars)
 head(cars)
+```
+
+```{r test}
+for (i in 1:4){
+    print(i / 2)
+}
 ```
