@@ -1,0 +1,67 @@
+---
+title: A Comparision of tidytext and tm
+author: Sean Warlick
+date: '2017-11-26'
+slug: a-comparision-of-tidytext-and-tm
+categories:
+  - R
+tags:
+  - tidyverse
+  - tm
+---
+
+# Introduction
+In our previous post we explored the data structures utilized in **tm** and **tidytext**.  In this article we compare methods for cleaning and normalizing text with each package.  For this post well focus on striping numbers and puntucation, converting to lower case, tokenization and stemming or lemitization.  
+
+# Data
+For this exploration we will again be using a sample of 19 documents from the [Gutenburg Collection](http://www.gutenberg.org).  The Gutenberg collection can be accessed in R using the **gutenbergr** package.  
+
+The data for this example is a data frame with four columns and nineteen rows. Each row represents a document.  The text of the document is in the *full_text* variable.  The remaining columns - *id*, *author*, and *title* - provide metadata for the given document.  
+
+```{r data_collect, include=FALSE}
+library(tm)
+library(knitr)
+library(dplyr)
+library(gutenbergr)
+
+set.seed(42)
+
+# Obtain df with gutenberg ids of 20 works from Mark Twain or Shakespear.  
+document_id <- gutenberg_works() %>% 
+    filter(author %in% c('Twain, Mark', 'Shakespear, William') 
+           & language == 'en'
+           & has_text == TRUE) %>%
+    sample_n(20) %>% 
+    select(gutenberg_id)
+
+# Downlaod the documents
+gutenberg_data <- gutenberg_download(document_id$gutenberg_id,
+                   meta_fields = c('title', 'author'))
+
+# Convert Returned Data so there is only 1 row per text. 
+text_data<- c()
+for(id in unique(gutenberg_data$gutenberg_id)){
+    
+    # Filter to single document
+    current_document <- gutenberg_data %>% 
+        filter(gutenberg_id == id) 
+    
+    ## Get Title & Author for the document
+    current_title <- current_document %>% distinct(title)
+    title <- current_title$title
+    current_author <- current_document %>% distinct(author)
+    author <- current_author$author
+    
+    ## Combine all text ojbects
+    combined_text <- paste(current_document$text, collapse = ' ')
+    ## Convert to data frame
+    text_data <- rbind(text_data, c(id, author, title, combined_text))
+}
+
+text_data <- as.data.frame(text_data)
+names(text_data) <- c('id', 'author', 'title', 'full_text')
+text_data <- as.tbl(text_data)
+```  
+
+# Cleaning With **tm**
+The **tm** package provides a full set of functions to handle standard text normalization and cleaning.  The cleaning functions are invocked using the `tm_map()` function.  Custom cleaning functions can also be built using `content_transformer()`.  
