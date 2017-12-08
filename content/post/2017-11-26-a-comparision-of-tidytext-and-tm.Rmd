@@ -8,10 +8,11 @@ categories:
 tags:
   - tidyverse
   - tm
+draft: true
 ---
 
 # Introduction
-In our previous post we explored the data structures utilized in **tm** and **tidytext**.  In this article we compare methods for cleaning and normalizing text with each package.  For this post well focus on striping numbers and puntucation, converting to lower case, tokenization and stemming or lemitization.  
+In our previous post we explored the data structures utilized in **tm** and **tidytext**.  In this article we compare methods for cleaning and normalizing text with each package.  For this post well focus on striping numbers and punctuation, converting to lower case, tokenization and stemming or lemitization.  
 
 # Data
 For this exploration we will again be using a sample of 19 documents from the [Gutenburg Collection](http://www.gutenberg.org).  The Gutenberg collection can be accessed in R using the **gutenbergr** package.  
@@ -64,4 +65,44 @@ text_data <- as.tbl(text_data)
 ```  
 
 # Cleaning With **tm**
-The **tm** package provides a full set of functions to handle standard text normalization and cleaning.  The cleaning functions are invocked using the `tm_map()` function.  Custom cleaning functions can also be built using `content_transformer()`.  
+The **tm** package provides a full set of functions to handle standard text normalization and cleaning.  The cleaning functions are invoked using the `tm_map()` function.  Cleaning functions not included in **tm** can also be invoked using `content_transformer()`.  
+
+We'll start our cleaning process by performing the very basic steps of converting all the text to lower case, then remove any numbers in the text and then remove the punctuation.  The first step of the process uses `base::tolower()` so we need to wrap the function in `content_transformer()`.
+```{r tm_corpus, include=FALSE}
+# Create A Corpus
+corpus <- VCorpus(VectorSource(text_data$full_text))
+
+# Assign Metadata
+meta(corpus, type = 'indexed', 'tag' = 'author') <- text_data$author
+meta(corpus, type = 'indexed', 'tag' = 'title') <- text_data$title
+```  
+```{r tm_cleaning} 
+# Original Corpus
+substring(corpus[[1]]$content, 1, 250)
+
+# Cleaning of Corpus
+corpus2 <- corpus %>% 
+    tm_map(., content_transformer(tolower)) %>% 
+    tm_map(., removeNumbers) %>% 
+    tm_map(., removePunctuation)
+
+substring(corpus2[[1]]$content, 1, 250)
+```  
+
+Notice that as a result of the cleaning process that *Note.--I* ended up as *notei* due to the removal of the punctuation.  This is a great example of how the cleaning process is very iterative.  To correct this bug, let's define a custom function to replace dashes with a space and introduce it into the cleaning pipeline.  To use our function with `tm_map()` we will need to again wrap it with `content_transformer()`.  
+
+```{r custom_function}
+replace_dash <- function(x){
+    gsub('-+', ' ', x)
+} 
+
+corpus2 <- corpus %>% 
+    tm_map(., content_transformer(tolower)) %>% 
+    tm_map(., removeNumbers) %>%
+    tm_map(., content_transformer(replace_dash)) %>% 
+    tm_map(., removePunctuation)
+
+substring(corpus2[[1]]$content, 1, 250)
+```  
+```{r remove_stop_words}  
+```
