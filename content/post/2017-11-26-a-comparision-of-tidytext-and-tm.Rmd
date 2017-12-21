@@ -9,10 +9,12 @@ tags:
   - tidyverse
   - tm
 draft: true
+editor_options: 
+  chunk_output_type: console
 ---
 
 # Introduction
-In our previous post we explored the data structures utilized in **tm** and **tidytext**.  In this article we compare methods for cleaning and normalizing text with each package.  For this post well focus on striping numbers and punctuation, converting to lower case, tokenization and stemming or lemitization.  
+In our previous post we explored the data structures utilized in **tm** and **tidytext**.  In this article we compare methods for cleaning and normalizing text with each package.  Despite the differences in data models used by the packages,  the process of normalizing the text is largely the same between the two packages. In fact we'll use the same functions to accomplish our goals of converting the text to lowercase, removing numbers, punctuation, white space and stopwords before stemming and tokenizing the corpus.  
 
 # Data
 For this exploration we will again be using a sample of 19 documents from the [Gutenburg Collection](http://www.gutenberg.org).  The Gutenberg collection can be accessed in R using the **gutenbergr** package.  
@@ -92,12 +94,11 @@ corpus2 <- corpus %>%
 substring(corpus2[[1]]$content, 1, 250)
 ```  
 
-Notice that as a result of the cleaning process that *Note.--I* ended up as 
-*notei* due to the removal of the punctuation.  This is a great example of how 
-the cleaning process is very iterative.  To correct this bug, let's define a 
-custom function to replace dashes with a space and introduce it into the 
-cleaning pipeline.  To use our function with `tm_map()` we will need to again 
-wrap it with `content_transformer()`.  
+Notice that *Note.--I* ended up as *notei* due to the removal of the punctuation
+.  This is a great example of how the cleaning process is very iterative.  
+To correct this bug, let's define a custom function to replace dashes with a 
+space and introduce it into the cleaning pipeline.  To use our function with 
+`tm_map()` we will need to again wrap it with `content_transformer()`.  
 
 ```{r custom_function}
 replace_dash <- function(x){
@@ -126,13 +127,15 @@ corpus3 <- corpus2 %>%
 substring(corpus3[[1]]$content, 1, 250)
 ```  
   
-## Cleaning with **tidytext**  
-The **tidytext** package is very signle minded in reaching it's very specific
-goal, to make it easy to apply tidy data princpals to text analytics.  However, this single mindedness means that the package doesn't include any functions to
-prepare the text.  However, the tools included **tm** and used above work well
-with **dplyr** and **tidytext**.  
+# Cleaning with **tidytext**  
+The **tidytext** package is very single minded in reaching it's very specific
+goal, to make it easy to apply tidy data principals to text analytics.  However, 
+this single mindedness means that the package doesn't includes few functions to
+prepare the text.  However, the tools used above work well with **dplyr** 
+and **tidytext**.  
   
-As result of this compatibility, the code to prepare the documents in the **tidytext** paradime is very similar to the code in the examples above.  The 
+As result of this compatibility, the code to prepare the documents in the 
+**tidytext** paradime is very similar to the code in the examples above.  The 
 biggest difference is that we don't need to use `content_transformer()` to work
 with `tolower()` or our `replace_dash()` function.  
 ```{r tidy_text}  
@@ -148,4 +151,6 @@ tidy_text %>%
     mutate(clean_text = stemDocument(clean_text)) %>% 
     select(clean_text) %>%
     head()
-```
+```  
+
+
