@@ -1,7 +1,7 @@
 # Let's Ask The Data
-This repository contains the source code for [my personal website](www.seanwarlick.com).  
+This repository contains the source code for [my personal website](https://www.seanwarlick.com).  
 
-The content of [www.seanwarlick.com](www.seanwarlick.com) is Copyright (c) 2017 Sean Warlick.
+The content of [www.seanwarlick.com](https://www.seanwarlick.com) is Copyright (c) 2017 Sean Warlick.
 
 ## Colophon   
 SeanWarlick.com built using the combination of the [Hugo]() framework and the R package [**blogdown**](https://github.com/rstudio/blogdown).  It utilizes the [future imperfect theme](https://github.com/jpescador/hugo-future-imperfect), which is licensed under the MIT license.  The site is built by and hosted on [Netlify](https://www.netlify.com).  
