@@ -1,7 +1,7 @@
 ---
 title: A Confession
 author: Sean Warlick
-date: '2017-12-21'
+date: '2017-12-23'
 slug: a-confession
 categories:
   - R
