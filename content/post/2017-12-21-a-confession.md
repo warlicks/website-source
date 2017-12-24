@@ -12,11 +12,13 @@ featured: ''
 featuredalt: ''
 featuredpath: ''
 linktitle: ''
-draft: True
+draft: False
 ---
 
-I have a confession to make.  When I was newer to R, I hated RStudio. 
-I want to emphasize the past tense of the previous sentence, given that it is a rather adversarial statement.  However, over the past year I have really come to appreciate the power of RStudio and have since rebuilt my workflow around it.  
+I have a confession to make.  When I first started using R, I hated RStudio. 
+I want to emphasize the past tense of the previous sentence, given that it is 
+a rather adversarial statement.  However, over the past year I have really come 
+to appreciate the power of RStudio and have since rebuilt my workflow around it.  
   
 The restructuring of my work flow around RStudio has been driven by three things.
 First, improvements to RStudio allowed it to fit into my workflow.  Second, the 
@@ -28,12 +30,12 @@ R-Box extension to pass code to the R console.  I utilized this setup
 because it allowed me to have my text editor (in dark mode) on one monitor and 
 the console output and graphics window on a different monitor. With older 
 versions of RStudio, I couldn't replicate this workflow. The four-pane layout 
-felt constricting by comparison. The constant resizing of the console 
+felt constricting by comparison. The constant re-sizing of the console 
 and source panes to make one or the other readable was a huge annoyance.      
 
-With the release of RStudio X.X., I was able to replicate my preferred workflow.
+With the release of RStudio 0.99.878, I was able to replicate my preferred workflow.
 I can now pop out the source editor to one monitor and put the console pane 
-of RStudio on my other screen. I no longer need to resize the windows to make 
+of RStudio on my other screen. I no longer need to re-size the windows to make 
 the code or the output readable. This new set-up also allows me to have other 
 tools like a file browser and details about my environment right at my finger 
 tips. The most recent release of RStudio (Version 1.1.383) included an improved 
@@ -68,4 +70,4 @@ on from Sublime Text at home too.
 For the longest time I resisted RStudio. It didn't fit well into my preferred 
 work set-up and I didn't see the advantages over my old set-up. However, 
 greater practice with the IDE, the powerful development features and improvements
-to the GUI led me to adopt RStudio as my default programming enviroment for R.  
+to the GUI led me to adopt RStudio as my default programming environment for R.  
