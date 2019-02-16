@@ -106,6 +106,12 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   identifier = "fa fa-newspaper-o"
   weight = 3
 
+[[menu.main]]
+  name = 'CV'
+  url = "/cv/"
+  identifier = "fa fa-briefcase"
+  weight = 4
+
 #[[menu.main]]
   #name = "Projects"
   #url = "/itemized/"

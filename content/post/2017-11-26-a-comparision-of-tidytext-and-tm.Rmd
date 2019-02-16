@@ -1,5 +1,6 @@
 ---
-title: A Comparision of tidytext and tm
+title: 'A Comparision of tidytext and tm'
+description: 'Part 2: Cleaning Text'
 author: Sean Warlick
 date: '2017-11-26'
 slug: a-comparision-of-tidytext-and-tm
@@ -14,15 +15,28 @@ editor_options:
 ---
 
 # Introduction
-In our previous post we explored the data structures utilized in **tm** and **tidytext**.  In this article we compare methods for cleaning and normalizing text with each package.  Despite the differences in data models used by the packages,  the process of normalizing the text is largely the same between the two packages. In fact we'll use the same functions to accomplish our goals of converting the text to lowercase, removing numbers, punctuation, white space and stopwords before stemming and tokenizing the corpus.  
+In our previous post we explored the data structures utilized in **tm** and
+**tidytext**.  In this article we compare methods for cleaning and normalizing 
+text with each package.  Despite the differences in data models used by the 
+packages,  the process of normalizing the text is largely the same between the 
+two packages. In fact the same functions are used to accomplish the goals of 
+converting the text to lowercase, removing numbers, punctuation, white space and
+stopwords before stemming the text.  Finally, the documents will be tokenized 
+and converted to a term document matrix.  
 
 # Data
-For this exploration we will again be using a sample of 19 documents from the [Gutenburg Collection](http://www.gutenberg.org).  The Gutenberg collection can be accessed in R using the **gutenbergr** package.  
+For this exploration we will again be using a sample of 19 documents from the
+[Gutenburg Collection](http://www.gutenberg.org).  The Gutenberg collection can 
+be accessed in R using the **gutenbergr** package.  
 
-The data for this example is a data frame with four columns and nineteen rows. Each row represents a document.  The text of the document is in the *full_text* variable.  The remaining columns - *id*, *author*, and *title* - provide metadata for the given document.  
+The data for this example is a data frame with four columns and nineteen rows. 
+Each row represents a document.  The text of the document is in the *full_text*
+variable.  The remaining columns - *id*, *author*, and *title* - provide 
+metadata for the given document.  
 
 ```{r data_collect, include=FALSE}
 library(tm)
+library(tidytext)
 library(knitr)
 library(dplyr)
 library(gutenbergr)
@@ -69,9 +83,15 @@ tidy_text <- text_data %>% select(-id)
 ```  
 
 # Cleaning With **tm**
-The **tm** package provides a full set of functions to handle standard text normalization and cleaning.  The cleaning functions are invoked using the `tm_map()` function.  Cleaning functions not included in **tm** can also be invoked using `content_transformer()`.  
+The **tm** package provides a full set of functions to handle standard text 
+normalization and cleaning.  The cleaning functions are invoked using the 
+`tm_map()` function.  Cleaning functions not included in **tm** are invoked 
+by wraping them in `content_transformer()`.  
 
-We'll start our cleaning process by performing the very basic steps of converting all the text to lower case, then remove any numbers in the text and then remove the punctuation.  The first step of the process uses `base::tolower()` so we need to wrap the function in `content_transformer()`.
+We'll start our cleaning process by performing the very basic steps of converting
+all the text to lower case, then remove any numbers in the text and then remove 
+the punctuation.  The first step of the process uses `base::tolower()` so we 
+need to wrap the function in `content_transformer()`.  
 ```{r tm_corpus, include=FALSE}
 # Create A Corpus
 corpus <- VCorpus(VectorSource(text_data$full_text))
@@ -94,11 +114,11 @@ corpus2 <- corpus %>%
 substring(corpus2[[1]]$content, 1, 250)
 ```  
 
-Notice that *Note.--I* ended up as *notei* due to the removal of the punctuation
-.  This is a great example of how the cleaning process is very iterative.  
-To correct this bug, let's define a custom function to replace dashes with a 
-space and introduce it into the cleaning pipeline.  To use our function with 
-`tm_map()` we will need to again wrap it with `content_transformer()`.  
+Notice that the cleaning turned the phrase "*Note.-\-I*" into *notei* due to the
+removal of the punctuation.  This is a great example of how the cleaning process
+is very iterative.  To correct this bug, let's define a custom function to 
+replace dashes with a space and introduce it into the cleaning pipeline.  To use
+our function with `tm_map()` we will need to wrap it with `content_transformer()`.  
 
 ```{r custom_function}
 replace_dash <- function(x){
@@ -139,7 +159,7 @@ As result of this compatibility, the code to prepare the documents in the
 biggest difference is that we don't need to use `content_transformer()` to work
 with `tolower()` or our `replace_dash()` function.  
 ```{r tidy_text}  
-tidy_text %>% 
+tidy_text <- tidy_text %>% 
     mutate(clean_text = tolower(full_text)) %>% 
     mutate(clean_text = replace_dash(clean_text)) %>% 
     mutate(clean_text = removeNumbers(clean_text)) %>% 
@@ -149,8 +169,88 @@ tidy_text %>%
                                     )
            ) %>% 
     mutate(clean_text = stemDocument(clean_text)) %>% 
+    # Remove the original text to keap the data frame tidy.  
+    select(-full_text)
+    
+#View the results
+tidy_text %>% dim()
+tidy_text %>% 
     select(clean_text) %>%
     head()
 ```  
 
+# Tokenizing with **tm**
+Creating a term document matrix, or a document term matrix using **tm** is 
+acomplished by calling `TermDocumentMatrix()` or `DocumentTermMatrix()` 
+respectively.  The funcitons allow user to control vairety of options, including
+the tokenization of the corpus and the weighting of the resulting term document 
+matrix.  By default the function utilizes unigram word tokenization, provided by
+the **NLP** package.  In this example we want to use bigram word tokens, so we 
+will need to define our own tokenization function.  To keep thing simple we will
+use simple term frequency in the matrix.  
+```{r tm_tokenize}
+# Create Tokenizer Function For 
+bigram_tokenizer <- function(x){
+    unlist(
+           lapply(ngrams(words(x), 2),
+                  paste,
+                  collapse = " "),
+           use.names = FALSE)
+}
 
+tdm <- TermDocumentMatrix(corpus3, 
+                          control = list(tokenize = bigram_tokenizer,
+                                         weighting = weightTf)
+                          )
+print(tdm)
+print(as.matrix(tdm)[1:8, 1:8])
+```  
+  
+# Tokenizing with **tidytext**
+Tokenization is one of the few tasks, for which **tidytext** includes functions.
+There are a variety of tokenization options avaliable via the `unest_tokens()` 
+fucntion.  The the tokinization options are provided by calling **tokenizers**. 
+As above we will create bigram word tokens from the corpus.  
+
+```{r tidy_tokens}  
+# Create a data frame with bigram word tokens
+tokenized_text <- tidy_text %>% 
+    unnest_tokens(., bigrams, clean_text, token = 'ngrams', n = 2)
+
+# View results
+tokenized_text %>% dim()
+tokenized_text %>% select(title, bigrams) %>% head()
+```  
+There are two things we should notice two changes in the resulting data frame.  
+First, the output data frame has more rows; instead of one row per document, 
+there is one row per bigram per document.  The second change is a bit subtle.  
+If we print the titles and of the documents from the data frame before we tokenize
+and after we can see that the data frame has been sorted by the title of the 
+document.
+
+```{r doc order}
+tidy_text %>% select(author, title) %>% head()
+tokenized_text %>% select(author, title) %>% head()
+```  
+In the end the ordering of the document's won't impact the results of the anlaysis.
+However, keeping track of the document order in the data frame can help when checking
+for bugs and iterpreting the results of the end analysis. 
+
+Now that we have taken a look at tokenized data frame we need to convert the data
+frame to a term document matrix.  First we need to count the occurances of each 
+word bigram by document.  Next we will use one of the  fucntions provided by 
+**tidytext** provides several functions to cast a tidy data frame into term 
+document matrices, document term matrices or a document feature matrix 
+from the **quanteda** package.  
+
+```{r tidy_tdm}
+tokenized_text <- tokenized_text %>% 
+    group_by(title, bigrams) %>% 
+    summarise(cnt = n())
+tokenized_text %>% head()
+
+tidy_tdm <- tokenized_text %>% 
+    cast_tdm(bigrams, title, cnt, weighting = tm::weightTf)
+
+print(as.matrix(tidy_tdm)[1:8, 1:8])
+```
