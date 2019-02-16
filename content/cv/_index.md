@@ -4,7 +4,7 @@ description: CV
 author: Sean Warlick
 date: '2018-02-25'
 ---
-### Data Science Experience  
+## Data Science Experience  
 **Boeing**, *Seattle, WA*, January 2016 - Present
 
 * Team lead for project to model failures in airplane engines using general additive models to identify operational behaviors and environmental conditions associated to the failures. Model results were used to provide airline specific recommendations for modifying take off and climb procedures to extend engine life.  
@@ -25,26 +25,26 @@ date: '2018-02-25'
 **Data Kind DC**, *Washington, DC*   2015  
 
 * Participated in development of interactive of labor violations for the Fair Labor Association  
-* Collaborated with other data scientists using different programing languages and with different areas of expertise  
+* Collaborated with other data scientists using different programming languages and with different areas of expertise  
 * Contributed time and skills to data projects for local non-profits  
   
-### Software Publications  
+## Software Publications  
   
-* Warlick, S. *noaaoceans: Collect Ocean Data From NOAA.* R package version 0.1.0. Avaliable on [Github](https://github.com/warlicks/noaaoceans) and [CRAN](https://cran.r-project.org/web/packages/noaaoceans/index.html)  
+* Warlick, S. *noaaoceans: Collect Ocean Data From NOAA.* R package version 0.1.0. Available on [Github](https://github.com/warlicks/noaaoceans) and [CRAN](https://cran.r-project.org/web/packages/noaaoceans/index.html)  
 
-### Presentations  
+## Presentations  
   
 * “Enabling Rapid Diagnosis & Prescriptive Maintenance.” Presentation, Boeing Technical Excellence Conference, St. Charles, MO, May 2018  
 
 * “Applying Natural Language Processing and Text Mining Techniques to Marine Mammal Literature: Identifying and Summarizing Future Research Directions.” Speed talk, 22nd Biennial Conference on the Biology Of Marine Mammals, Halifax, NS, Oct 2017  
 
-* “Maps Without the Hassle Using ggmap.” Statistical Programing DC, Washington, DC, March 2015  
+* “Maps Without the Hassle Using ggmap.” Statistical Programming DC, Washington, DC, March 2015  
   
 ### Patents  
   
 * Betz, F., Coleman, R., Jackson, G., Nakhjavani, O., Puigh, D., Runo, S., Schimert, J., Warlick, S., Zaikin, A. Diagnostic System For A Closed Fluid System. U.S. Patent Application 15\833564. Filed January 2018. Patent Pending.
   
-### Education  
+## Education  
   
 **American University**, *Washington, DC*,  2014  
 
@@ -54,7 +54,7 @@ date: '2018-02-25'
 
 * Bachelor of Arts: History
   
-### Skills & Software
+## Skills & Software
 * Experienced in the use of R, Python, Tableau, SAS, and SPSS for statistical analysis and data visualization.
 * Daily use of SQL for report generation and data manipulation in relational databases.
 * Experienced with Git, GitHub, and GitLab for version control and collaboration.
