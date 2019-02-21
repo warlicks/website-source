@@ -12,7 +12,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [params]
   # Sets the meta tag description
-  description          = "Sean Warlick is a Data Scientist working in the airline and aerospace industry.  He currently works in for Boeing in their globla services division.  Thanks for reading his personal ramblings about R and Python"
+  description          = "Sean Warlick is a Data Scientist working in the airline and aerospace industry.  He currently works for Boeing in their global services division.  Thanks for reading his personal ramblings about R and Python"
   # Sets the navbarTitle that appears in the top left of the navigation bar
   navbarTitle          = "Sean Warlick"
   # Sets where "View More Posts" links
@@ -98,25 +98,25 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   name = "About"
   url = "/about/"
   identifier = "fa fa-id-card-o"
-  weight = 2
+  weight = 4
 
 [[menu.main]]
   name = "Blog"
   url = "/post/"
   identifier = "fa fa-newspaper-o"
-  weight = 3
+  weight = 2
 
 [[menu.main]]
   name = 'CV'
   url = "/cv/"
   identifier = "fa fa-briefcase"
-  weight = 4
+  weight = 5
 
-#[[menu.main]]
-  #name = "Projects"
-  #url = "/itemized/"
-  #identifier = "fa fa-list"
-  #weight = 4
+[[menu.main]]
+  name = "Projects"
+  url = "/itemized/"
+  identifier = "fa fa-list"
+  weight = 3
 
 [[menu.main]]
   name = "Categories"
