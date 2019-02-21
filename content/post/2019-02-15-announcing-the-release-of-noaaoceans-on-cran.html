@@ -1,3 +1,16 @@
+---
+title: Announcing the Release of noaaoceans on CRAN
+author: Sean
+date: '2019-02-15'
+categories:
+  - R
+tags:
+  - CRAN
+  - noaaoceans
+slug: release-of-noaaoceans
+draft: false
+---
+
 
 
 <p>I’m excited to announce that my first R package, <strong>noaaoceans</strong>, is now available on CRAN. The current version focuses on accessing data from the <a href="https://tidesandcurrents.noaa.gov/api/">CO-OPS API</a>. The package also facilitates the collection of basic metadata for each of the stations that collect the data available in the API.</p>
@@ -91,7 +104,7 @@ water_temp %&gt;%
     labs(x = &quot;Date&quot;,
          y = &#39;Average Water Temperature&#39;,
          title = &#39;Average Hourly Water Temperature In Washington During December 2018&#39;)</code></pre>
-<p><img src="2019-02-15-announcing-the-release-of-noaaoceans-on-cran_files/figure-html/plot_data-1.png" width="672" /></p>
+<p><img src="/post/2019-02-15-announcing-the-release-of-noaaoceans-on-cran_files/figure-html/plot_data-1.png" width="672" /></p>
 <p>As one might expect the average hourly temperature decreases over the month as winter sets in. There is a steady decrease over the first ten days, before the temperature rises again and holds fairly steady after the middle of the month. There appears to be a daily pattern where the temperature drops at night and increases during the day.</p>
 <p>One consequence of finding the hourly average is that we have hidden any geographic effects. There might be temperature differences at each station. A map with each station and the average temperature at that station will help study this. We will need to combine the water temperature data with the station meta data to accomplish this task.</p>
 <pre class="r"><code># Compute the average temperature by location. 
@@ -142,7 +155,7 @@ ggplot(data = wa_map) +
          y = &#39;Latitude&#39;,
          title = &#39;Average Water Temperature by Station&#39;) + 
   scale_color_continuous(name =&quot;Average Water\n Temperature&quot;)</code></pre>
-<p><img src="2019-02-15-announcing-the-release-of-noaaoceans-on-cran_files/figure-html/make_map-1.png" width="576" /></p>
+<p><img src="/post/2019-02-15-announcing-the-release-of-noaaoceans-on-cran_files/figure-html/make_map-1.png" width="576" /></p>
 <p>After looking at some basic examples of using <strong>noaaoceans</strong> we should highlight a known issue with the <a href="https://tidesandcurrents.noaa.gov/api/">CO-OPS API</a>. While developing the package we encountered a few occasions where the data inventory indicates that data exist for a given time period, but it isn’t available via the API.</p>
 <p>A specific example as of this this writing is the Neah Bay (Station ID: 9443090). The station’s <a href="https://tidesandcurrents.noaa.gov/inventory.html?id=9443090">data inventory</a> indicates that water temperature is available for all of 2018. However, when querying the API the data for January and February 2018 isn’t available.</p>
 <p>Depending on the date requested in the API call, the API handles this problem in different ways. When setting the date range for only the missing period, the API response includes an error indicating that no data was found.</p>
@@ -169,5 +182,5 @@ neah_bay_year %&gt;% head()</code></pre>
 ## 6 2018-01-01 06:00   1,1,1 9443090</code></pre>
 <p>A quick inspection of the returned data frame shows that the temperature value (<em>v</em>) is missing for the January and February time stamps. In summary if you query for a period where there is only missing data you’ll get an error. If you submit a query for a date range and a subset of that period is missing data will be returned with missing values for the appropriate dates.</p>
 <p>If you encounter a situation where it appears that data should be available for a given query, you might want to contact NOAA’s User Services(<a href="mailto:co-ops.userservices@noaa.gov">co-ops.userservices@noaa.gov</a>). They have been very responsive, when issues have been raised and worked to get the missing data accessible if the data is in their database.</p>
-<p>Building my first R package has been a fun and a good learning experience. I plan to continuing to develop the package. Please feel free to open an issue on <a href="https://www.github.com/warlicks/noaaoceans/issues">GitHub</a> if you find any bugs or would like to request a feature.</p>
+<p>Building my first R package has been a fun and a good learning experience. I plan to continuing to develop the package. Please feel free to open an issue on <a href="https://github.com/warlicks/noaaoceans/issues/">GitHub</a> if you find any bugs or would like to request a feature.</p>
 </div>
