@@ -169,4 +169,4 @@ A quick inspection of the returned data frame shows that the temperature value (
 
 If you encounter a situation where it appears that data should be available for a given query, you might want to contact NOAA's User Services(co-ops.userservices@noaa.gov). They have been very responsive, when issues have been raised and worked to get the missing data accessible if the data is in their database.  
 
-Building my first R package has been a fun and a good learning experience.  I plan to continuing to develop the package. Please feel free to open an issue on [GitHub](www.github.com/warlicks/noaaoceans/issues) if you find any bugs or would like to request a feature.  
+Building my first R package has been a fun and a good learning experience.  I plan to continuing to develop the package. Please feel free to open an issue on [GitHub](https://www.github.com/warlicks/noaaoceans/issues) if you find any bugs or would like to request a feature.  
