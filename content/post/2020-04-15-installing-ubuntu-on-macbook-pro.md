@@ -11,7 +11,7 @@ featuredalt: ''
 featuredpath: ''
 linktitle: ''
 type: post
-draft: true
+draft: false
 ---
 
 Trapped at home, I've been slowly making my way through chores I've been putting off. One of the things I put off is performing a full install of my operating system on my aging Mac Book Pro. At nearly 10 years old, it is starting to show its age. It is stuck on macOS High Sierra, which Apple will end support later this year.
