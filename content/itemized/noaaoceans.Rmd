@@ -1,16 +1,16 @@
 ---
-title: noaaoceans
-author: Sean
+title: "noaaoceans"
+author: "Sean"
 date: '2019-02-15'
-categories:
-  - R
-  - Packages
-  - Projects
-tags:
-  - CRAN
-  - noaaoceans
+draft: false
 slug: release-of-noaaoceans
-draft: true
+tags:
+- CRAN
+- noaaoceans
+categories:
+- R
+- Packages
+- Projects
 ---
 
 The **noaaoceans** package is designed to facilitate access to various National Oceanic and Atmospheric Administration (NOAA) data sources.  The current version focuses on accessing data from the [CO-OPS API](https://tidesandcurrents.noaa.gov/api/).  The package also facilitates the collection of basic metadata for each of the stations that collect the data available in the API.

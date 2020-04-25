@@ -1,4 +1,6 @@
 # Let's Ask The Data
+[![Netlify Status](https://api.netlify.com/api/v1/badges/822902d2-4410-42df-a039-19d1b63a1be6/deploy-status)](https://app.netlify.com/sites/gunner-education-68543/deploys)
+
 This repository contains the source code for [my personal website](https://www.seanwarlick.com).  
 
 The content of [www.seanwarlick.com](https://www.seanwarlick.com) is Copyright (c) 2017 Sean Warlick.
