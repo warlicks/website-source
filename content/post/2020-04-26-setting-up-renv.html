@@ -27,8 +27,8 @@ output: md_document
 <pre class="r"><code>install.packages(&#39;renv&#39;)
 renv::init()</code></pre>
 <p>When <code>renv::init()</code> is called three of things happen. First, <strong>renv</strong> searches the project files for all the packages used within the project and copies them to a project specific library. Second, it captures the state of the library in <em>renv.lock</em> file. Finally, it builds the infrastructure needed to activate the project specific library each time you launch the project in RStudio. If we look at the figures below we can see the file structure before and after running <code>renv::init()</code>. In the after figure we have a new file <em>renv.lock</em> and a new directory <code>renv/</code>. Inside <code>renv/</code> is activate.R which activates the project library and another directory <code>renv/library/</code> which stores the project specific library.</p>
-<p><img src="/post/2020-04-26-setting-up-renv_files/file_structure_before.png" />
-<img src="/post/2020-04-26-setting-up-renv_files/post_init.png" />
+<p><img src="post/2020-04-26-setting-up-renv_files/file_structure_before.png" /><br />
+<img src="post/2020-04-26-setting-up-renv_files/post_init.png" />
 File Structure After Running <code>renv::init()</code>. Notice the addition of renv.lock and renv/&quot;</p>
 </div>
 <div id="installing-packages-manually-updating-lockfile" class="section level3">

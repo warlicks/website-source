@@ -31,8 +31,8 @@ renv::init()
 
 When `renv::init()` is called three of things happen. First, **renv** searches the project files for all the packages used within the project and copies them to a project specific library. Second, it captures the state of the library in *renv.lock* file. Finally, it builds the infrastructure needed to activate the project specific library each time you launch the project in RStudio. If we look at the figures below we can see the file structure before and after running `renv::init()`. In the after figure we have a new file *renv.lock* and a new directory `renv/`. Inside `renv/` is activate.R which activates the project library and another directory `renv/library/` which stores the project specific library.
 
-![](/post/2020-04-26-setting-up-renv_files/file_structure_before.png)
-![](/post/2020-04-26-setting-up-renv_files/post_init.png)
+![](post/2020-04-26-setting-up-renv_files/file_structure_before.png)  
+![](post/2020-04-26-setting-up-renv_files/post_init.png)
 File Structure After Running `renv::init()`. Notice the addition of renv.lock and renv/"
 
 
