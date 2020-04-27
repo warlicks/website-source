@@ -14,7 +14,7 @@ featuredalt: ''
 featuredpath: ''
 linktitle: ''
 type: post
-output: blogdown::html_page
+output: md_document
 ---
 
 After switching to Ubuntu as my operating system I needed to re-install all of the R packages I needed to work on my website. These included both the packages needed by **blogdown** and packages I used in specific articles. I didn't know what I was missing until I ran into an error. Installing the missing software packages was time consuming and tedious. 
@@ -31,17 +31,10 @@ renv::init()
 
 When `renv::init()` is called three of things happen. First, **renv** searches the project files for all the packages used within the project and copies them to a project specific library. Second, it captures the state of the library in *renv.lock* file. Finally, it builds the infrastructure needed to activate the project specific library each time you launch the project in RStudio. If we look at the figures below we can see the file structure before and after running `renv::init()`. In the after figure we have a new file *renv.lock* and a new directory `renv/`. Inside `renv/` is activate.R which activates the project library and another directory `renv/library/` which stores the project specific library.
 
-```{r images, echo=FALSE}
-before_path <- '/post/2020-04-26-setting-up-renv_files/file_structure_before.png'
-after_path <- "/post/2020-04-26-setting-up-renv_files/post_init.png"
-after_caption = "File Structure After Running `renv::init()`. Notice the addition of renv.lock and renv/"
-blogdown::shortcode("figure",
-                    src = before_path,
-                    caption = "File Structure Before Running `renv::init()`")
-blogdown::shortcode("figure", 
-                    src = after_path,
-                    caption = after_caption)
-```
+![](/post/2020-04-26-setting-up-renv_files/file_structure_before.png)
+![](/post/2020-04-26-setting-up-renv_files/post_init.png)
+File Structure After Running `renv::init()`. Notice the addition of renv.lock and renv/"
+
 
 ### Installing Packages Manually & Updating Lockfile 
 Now that I have project specific library set up I can largely go about my normal workflow, installing packages as needed. For example when I went to preview my updates I discovered that `renv::init()` missed **sourcetools** and **miniUI** because of the limitations with `renv::dependencies()`[^2]. I can add these to my project library using `install.packages()` or `renv::install()`
