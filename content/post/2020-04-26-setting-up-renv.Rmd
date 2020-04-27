@@ -14,9 +14,7 @@ featuredalt: ''
 featuredpath: ''
 linktitle: ''
 type: post
-output: 
-  html_document: 
-    highlight: pygments
+output: blogdown::html_page
 ---
 
 After switching to Ubuntu as my operating system I needed to re-install all of the R packages I needed to work on my website. These included both the packages needed by **blogdown** and packages I used in specific articles. I didn't know what I was missing until I ran into an error. Installing the missing software packages was time consuming and tedious. 
