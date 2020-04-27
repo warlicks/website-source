@@ -1,0 +1,131 @@
+After switching to Ubuntu as my operating system I needed to re-install
+all of the R packages I needed to work on my website. These included
+both the packages needed by **blogdown** and packages I used in specific
+articles. I didn’t know what I was missing until I ran into an error.
+Installing the missing software packages was time consuming and tedious.
+
+Not only was the process frustrating, recreating my development
+environment piece by piece did not follow best practices for
+reproducibility. One of the keys to reproduceibilty is the ability to
+easily and precisely replicate the computing environment, including all
+the supporting packages needed.[1] In support of this goal a number of
+tools exist to manage dependencies. Most python users are familiar with
+conda environments, which makes managing project dependencies very easy.
+For managing package dependencies in R **packrat** has been around for a
+while, but it has never seemed easy to use. A more recent addition is
+[**renv**](https://rstudio.github.io/renv/index.html), which I’m going
+to setup to manage my the dependencies for my website.
+
+### Installing and Setting Up renv
+
+Installing **renv** and setting it up is fairly straight forward.
+
+    install.packages('renv')
+    renv::init()
+
+When `renv::init()` is called three of things happen. First, **renv**
+searches the project files for all the packages used within the project
+and copies them to a project specific library. Second, it captures the
+state of the library in *renv.lock* file. Finally, it builds the
+infrastructure needed to activate the project specific library each time
+you launch the project in RStudio. If we look at the figures below we
+can see the file structure before and after running `renv::init()`. In
+the after figure we have a new file *renv.lock* and a new directory
+`renv/`. Inside `renv/` is activate.R which activates the project
+library and another directory `renv/library/` which stores the project
+specific library.
+
+<!--html_preserve-->
+{{% figure
+src=“post/2020-04-26-setting-up-renv\_files/file\_structure\_before.png”
+caption=“File Structure Before Running `renv::init()`”
+%}}<!--/html_preserve--><!--html_preserve-->{{% figure
+src=“post/2020-04-26-setting-up-renv\_files/post\_init.png”
+caption=“File Structure After Running `renv::init()`. Notice the
+addition of renv.lock and renv/” %}}<!--/html_preserve-->
+
+### Installing Packages Manually & Updating Lockfile
+
+Now that I have project specific library set up I can largely go about
+my normal workflow, installing packages as needed. For example when I
+went to preview my updates I discovered that `renv::init()` missed
+**sourcetools** and **miniUI** because of the limitations with
+`renv::dependencies()`[2]. I can add these to my project library using
+`install.packages()` or `renv::install()`
+
+    install.packages('sourcetools')
+    install.packages('miniUI')
+
+Unfortunately installing these packages doesn’t automatically update the
+lockfile. In fact with **renv**’s default settings for the snapshot
+type, it thinks the lockfile is still up to date. Fixing this requires
+changing the settings to capture the entire project library[3]. After
+changing the setting, I can simply run `renv::snapshot()` any time we
+install new packages to our project requirements current. I can also run
+`revn::status()` to check if the lockfile is synced with the project
+library.
+
+    renv::snapshot() # Nothing has changed becasue of the default setting
+    ## * The lockfile is already up to date.
+
+    # Change the snapshot setting
+    renv::settings$snapshot.type("simple")
+
+    renv::snapshot()
+
+    ## The following package(s) will be updated in the lockfile:
+    ## 
+    ## # CRAN ===============================
+    ## - KernSmooth    [* -> 2.23-16]
+    ## - boot          [* -> 1.3-24]
+    ## - class         [* -> 7.3-16]
+    ## - cluster       [* -> 2.1.0]
+    ## - codetools     [* -> 0.2-16]
+    ## - fastmap       [* -> 1.0.1]
+    ## - foreign       [* -> 0.8-75]
+    ## - miniUI        [* -> 0.1.1.1]
+    ## - nnet          [* -> 7.3-13]
+    ## - rpart         [* -> 4.1-15]
+    ## - shiny         [* -> 1.4.0.2]
+    ## - sourcetools   [* -> 0.1.7]
+    ## - spatial       [* -> 7.3-11]
+    ## - survival      [* -> 3.1-11]
+    ## - xtable        [* -> 1.8-4]
+    ## 
+    ## * Lockfile written to '~/Documents/website-source/renv.lock'.
+
+### renv and Version Control
+
+Now that I have all the software dependencies documented, I need get
+everything under version control to make it truly reproducible.
+Naturally, I don’t want to commit my entire project library. I just want
+to commit three files 1) renv.lock, 2) .Rprofile, and 3)
+renv/activate.R. With these three files present in the repository all I
+need to do is call to recreate my environment `renv::restore()`
+
+**renv** is designed to integrate well with version control. To see past
+versions of the lockfile committed to Git I can call `renv::history()`.
+Using `renv::revert(commit = commit)`, I can revert to a previous
+version of the file.
+
+### Conclusions
+
+Creating a reproducible development environment has been greatly
+simplified by **renv**. With only two functions, `renv::init()` and
+`renv::snapshot()` I can keep track of the packages I need to preview
+and build my website. If I ever need to recreate my environment, I won’t
+need to install packages one by one as I encounter errors in the build.
+All I will need to do is call `renv::restore()`.
+
+[1] The Turing Way Community, Becky Arnold, Louise Bowler, Sarah Gibson,
+Patricia Herterich, Rosie Higman, … Kirstie Whitaker. (2019, March 25).
+The Turing Way: A Handbook for Reproducible Data Science (Version
+v0.0.4). Zenodo.
+<a href="http://doi.org/10.5281/zenodo.3233986" class="uri">http://doi.org/10.5281/zenodo.3233986</a>;
+Gandrud, Chrisopher, *Reproducible Research with R and RStudio Second
+Edition* (CRC Press, 2016), 10.
+
+[2] See `?renv::dependencies` for details on how **renv** finds packages
+used in a project
+
+[3] See `?renv::snapshot` for details on the snapshot settings.
