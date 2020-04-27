@@ -37,10 +37,10 @@ specific library.
 
 <!--html_preserve-->
 {{% figure
- src=“/post/2020-04-26-setting-up-renv\_files/file\_structure\_before.png” 
+ src=“/post/2020-04-26-setting-up-renv_files/file_structure_before.png” 
 caption=“File Structure Before Running `renv::init()`”
 %}}<!--/html_preserve--><!--html_preserve-->{{% figure
- src=“/post/2020-04-26-setting-up-renv\_files/post\_init.png” 
+ src=“/post/2020-04-26-setting-up-renv_files/post_init.png” 
 caption=“File Structure After Running `renv::init()`. Notice the
 addition of renv.lock and renv/” %}}<!--/html_preserve-->
 
