@@ -69,7 +69,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
   paragraph = "My personal ramblings about data and data analysis in R and Python"
 
-  about     = "Sean Warlick is a Data Scientist working in the airline and aerospace industry.  He currently works in for Boeing in their globla services division.  Thanks for reading his personal ramblings about R and Python"
+  about     = "Sean Warlick is a Data Scientist in Puget Sound. He currently leads a data science team at Qualtrics"
 
   # This appears at the top of the sidebar above params.intro.header.
   # A width of less than 100px is recommended from a design perspective.
@@ -98,7 +98,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   name = "About"
   url = "/about/"
   identifier = "fa fa-id-card-o"
-  weight = 4
+  weight = 5
 
 [[menu.main]]
   name = "Blog"
@@ -110,7 +110,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   name = 'CV'
   url = "/cv/"
   identifier = "fa fa-briefcase"
-  weight = 5
+  weight = 4
 
 [[menu.main]]
   name = "Projects"
@@ -118,17 +118,17 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   identifier = "fa fa-list"
   weight = 3
 
-[[menu.main]]
-  name = "Categories"
-  url = "/categories/"
-  identifier = "fa fa-sitemap"
-  weight = 6
+#[[menu.main]]
+#  name = "Categories"
+#  url = "/categories/"
+#  identifier = "fa fa-sitemap"
+#  weight = 6
 
-[[menu.main]]
-  name = "Contact"
-  url = "/contact/"
-  identifier = "fa fa-envelope-o"
-  weight = 7
+#[[menu.main]]
+#  name = "Contact"
+#  url = "/contact/"
+#  identifier = "fa fa-envelope-o"
+#  weight = 6
 
 # Sets Social Media icons to appear and link to your account. Value should be your
 # username unless otherwise noted. These are the icons affected by socialAppearAtTop
